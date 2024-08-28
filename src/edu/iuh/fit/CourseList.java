@@ -12,56 +12,39 @@ package edu.iuh.fit;
  * @created: 8/26/2024 11:33 AM
  */
 public class CourseList {
-    private Course[] courses;
+    private final Course[] courses;
     int cnt = 0;
-    private static int count = 0;
-    // contructor
-    public CourseList(int n)  {
-        if (n<=0)
-            throw new IllegalArgumentException("Length of the array must be greater than 0");
-        courses = new Course[n];
-    }
-    // property get - getCourses(): Course[]
+    public CourseList(int n){
+        if(n <= 0) throw new IllegalArgumentException("Length of the array must be greater than 0");
 
-    // addCourse(Course): boolean
-    public boolean addCourse(Course course) {
-        // check if course is null
-        if (course==null) {
-            return false;
-        }
-        // check if course already exists
-        if (isExists(course)) {
-            return false;
-        }
-        // check if the array is full
-        if (count == courses.length) {
-            return false;
-        }
-        // add course to the array
-        courses[count++] = course;
+        courses  = new Course[n];
+    }
+    // Them khoa hoc
+    public boolean addCourse(Course course){
+        if(course == null) return false;
+
+        if(isExist(course)) return false;
+
+        if(cnt == courses.length) return false;
+
+        courses[cnt++] = course;
+
         return true;
-
     }
-    // exists(Course): boolean
-    public boolean isExists(Course course) {
-        for (int i = 0; i<count; i++) {
-            if (courses[i] != null && courses[i].getId().equalsIgnoreCase(course.getId()))
+
+    private boolean isExist(Course course) {
+        for(int i = 0; i < cnt; ++i){
+            if(courses[i].getId().equalsIgnoreCase(course.getId()))
                 return true;
         }
         return false;
     }
-    //lay danh sach khoa hoc
-    public Course[] getCourses() {
+
+    //   Lay danh sach khoa hoc
+    public Course[] getCourses(){
         return courses;
     }
-    public Course searchById(String s){
-        for(int i = 0; i < cnt; ++i){
-            if(courses[i].getId().equalsIgnoreCase(s)){
-                return courses[i];
-            }
-        }
-        return null;
-    }
+
     //    Phuong thuc xoa khoa hoc khoi danh sach
     public boolean removeCourse(String s){
         for(int i = 0; i < cnt; ++i){
@@ -76,6 +59,15 @@ public class CourseList {
         }
         throw new IllegalArgumentException("This ID does not exist");
     }
+    // Tim kiem theo id
+    public Course searchById(String s){
+        for(int i = 0; i < cnt; ++i){
+            if(courses[i].getId().equalsIgnoreCase(s)){
+                return courses[i];
+            }
+        }
+        return null;
+    }
 
     //    Tim kiem theo ten khoa hoc
     public Course[] SearchByTitle(String s){
@@ -89,6 +81,7 @@ public class CourseList {
         }
         return tmp;
     }
+
     // Tim kiem khao hoc theo khoa phu trach
     public Course[] SearchByDepartment(String s){
         Course[] tmp = new Course[cnt];
@@ -101,6 +94,7 @@ public class CourseList {
         }
         return tmp;
     }
+
     // Sap xep khoa hoc theo ten khoa hoc
     public Course[] sortCourse(){
         Course[] tmp = courses;
@@ -114,6 +108,7 @@ public class CourseList {
         }
         return tmp;
     }
+
     //  Tim khoa phu trach co nhieu khoa hoc nhat
     public String findDepartmentWithMostCourse(Course[] course){
         int max = 0;
@@ -132,6 +127,7 @@ public class CourseList {
         }
         return s;
     }
+
     // Tim khoa hoc co so tin chi lon nhat
     public Course[] findMaxCreditCourse(Course[] course) {
         int max = 0;

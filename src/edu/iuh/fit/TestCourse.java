@@ -18,25 +18,20 @@ public class TestCourse {
         CourseList courseList = new CourseList(10);
 
         initData(courseList);
-        // Them va lay danh sach khoa hoc
+// Them va lay danh sach khoa hoc
         System.out.printf("%-10s%-30s%10s %-30s\n", "Id", "Title", "Credit", "Department");
         Course[] temp = courseList.getCourses();
         for(Course c : temp)
         {
             if(c != null) System.out.println(c);
         }
-        String s = new Scanner(System.in).nextLine();
 //  Xoa mot khoa hoc trong danh sach
-        /*
         System.out.print("Nhap ma khoa hoc can xoa: ");
-
+        String s = new Scanner(System.in).nextLine();
         courseList.removeCourse(s);
         System.out.printf("%-10s%-30s%10s %-30s\n", "Id", "Title", "Credit", "Department");
         for(Course c : courseList.getCourses())
-
             if (c != null) System.out.println(c);
-
-         */
 
 //    Tim kiem khoa hoc theo id
         System.out.print("Nhap ma khoa hoc can tim: ");
@@ -73,25 +68,17 @@ public class TestCourse {
         for(Course c : courseList.findMaxCreditCourse(temp))
             if(c != null) System.out.println(c);
     }
+
     private static void initData(CourseList courseList) {
-        Course c1 = new Course("CS101", "Java Progarmmings 1", 3, "CS");
-        Course c2 = new Course("CS102", "Java Progarmmings 2", 3, "SE");
-        Course c3 = new Course("CS103", "Java Progarmmings 3", 4, "ABC");
-        Course c4 = new Course("CS104", "Java Progarmmings 4", 5, "DEF");
-        Course c5 = new Course("CS105", "Java Progarmmings 5", 6, "GHI");
+        Course c1 = new Course("CS101","Java Programing 1",2,"SE2");
+        Course c2 = new Course("CS102","Java Programing 2",3,"SE1");
+        Course c3 = new Course("CS103","Java Programing 3",2,"SE3");
+        Course c4 = new Course("CS104","Java Programing 4",3,"SE3");
 
         courseList.addCourse(c1);
         courseList.addCourse(c2);
         courseList.addCourse(c3);
         courseList.addCourse(c4);
-        courseList.addCourse(c5);
-        /*
-        for (Course c : courseList.getCourses())
-            if (c != null)
-                System.out.println(c);
-
-         */
-
     }
 
 }
